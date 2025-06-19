@@ -183,6 +183,10 @@ public class Player : NSObject, AVAudioPlayerDelegate {
         }
     }
     #endif
+
+    func invokeListenerStop(){
+        self.channel.invokeMethod(Music.METHOD_CURRENT, arguments: nil)
+    }
     
     #if os(iOS)
     var targets: [String:Any] = [:]
@@ -212,10 +216,6 @@ public class Player : NSObject, AVAudioPlayerDelegate {
     
     func invokeListenerPlayPause(){
         self.channel.invokeMethod(Music.METHOD_PLAY_OR_PAUSE, arguments: [])
-    }
-    
-    func invokeListenerStop(){
-        self.channel.invokeMethod(Music.METHOD_CURRENT, arguments: nil)
     }
     
     func setupMediaPlayerNotificationView(notificationSettings: NotificationSettings, audioMetas: AudioMetas, isPlaying: Bool) {
